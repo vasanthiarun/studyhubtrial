@@ -1,6 +1,7 @@
 import {useState} from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 const RegisterForm = () => {
+  const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     roll_no: '',
     email: '',
@@ -39,8 +40,9 @@ const RegisterForm = () => {
       return newerrors;
   } ; 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage('')
     const validationErrors = validateData();
      if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -48,12 +50,33 @@ const RegisterForm = () => {
       console.log(validationErrors);
       return;
     }
-    else
-    {
-       setMessage('')
-       setSubmitting(true);
-    }  
+
+    setSubmitting(true);    
     console.log('Form is submitted');
+    try {
+      
+      const response = await fetch('http://localhost:5000/user/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      console.log(data)  
+      if (response.ok) {
+        setMessage(data.message ||'Registration successful!' );
+        navigate('/login')
+        
+      } else {
+        setMessage(data.message || 'Registration failed.');
+      }
+    } catch (error) {
+      setMessage('An error occurred. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
 
   }
 return (
