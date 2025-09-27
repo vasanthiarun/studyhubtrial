@@ -11,6 +11,7 @@ const RegisterForm = () => {
 
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const {name,value} = e.target;
@@ -34,7 +35,7 @@ const RegisterForm = () => {
       if(!formData.display_name.trim()) newerrors.display_name = 'Required';
       if(!formData.password.trim()) newerrors.password = 'Required';
       if(!formData.confirm_password.trim()) newerrors.confirm_password = 'Required';
-
+      if (formData.password !== formData.confirm_password) newerrors.confirm_password = 'Passwords do not match.';
       return newerrors;
   } ; 
 
@@ -50,6 +51,7 @@ const RegisterForm = () => {
     else
     {
        setMessage('')
+       setSubmitting(true);
     }  
     console.log('Form is submitted');
 
@@ -124,7 +126,7 @@ return (
           />
           {errors.confirm_password && <div className="invalid-feedback">{errors.confirm_password}</div>}
         </div>
-        <button type="submit" className="btn btn-primary w-100">Register</button>
+        <button type="submit" className="btn btn-primary w-100">{submitting ? 'Registering...' : 'Register'}</button>
       </form>
 
       <p className="mt-3 text-center">
