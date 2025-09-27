@@ -10,6 +10,7 @@ const RegisterForm = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     const {name,value} = e.target;
@@ -42,15 +43,21 @@ const RegisterForm = () => {
     const validationErrors = validateData();
      if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      setMessage('Errors found!!')
       console.log(validationErrors);
       return;
     }
+    else
+    {
+       setMessage('')
+    }  
     console.log('Form is submitted');
 
   }
 return (
 <div className="container mt-4" style={{ maxWidth: '400px' }}>
       <h2 className="mb-4">Register</h2>
+      {message && <div className="alert alert-info">{message}</div>}
       <form  onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="roll_no" className="form-label">Roll No</label>
