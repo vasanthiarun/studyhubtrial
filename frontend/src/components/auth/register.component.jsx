@@ -1,4 +1,5 @@
 import {React} from 'react';
+import { Link } from "react-router-dom";
 const RegisterForm = () => {
 return (
 <div className="container mt-4" style={{ maxWidth: '400px' }}>
@@ -66,9 +67,9 @@ return (
       {/* Login Link */}
       <p className="mt-3 text-center">
         Already registered?{' '}
-        <a href="/login" className="text-decoration-none">
+        <Link to="/login" className="text-decoration-none">
           Login now
-        </a>
+        </Link>
       </p>
     </div>
 );
