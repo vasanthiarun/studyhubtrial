@@ -1,6 +1,9 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { Outlet, Link } from "react-router-dom";
+import { Fragment } from "react/jsx-runtime";
 const Header = () => {
   return (
+   <Fragment>
     <Navbar expand="lg" bg="light" className="border-bottom shadow-sm">
       <Container>
         {/* Brand on left */}
@@ -26,6 +29,8 @@ const Header = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <Outlet />
+    </Fragment>
   );
 };
 
