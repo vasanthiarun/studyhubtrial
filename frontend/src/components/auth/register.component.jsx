@@ -18,6 +18,11 @@ const RegisterForm = () => {
       [name] : value,
 
     });
+    //clear the errors when typing
+    setErrors((prev) => ({
+       ...prev,
+       [name] : '', 
+    }));
   };
 
   const validateData = () =>
