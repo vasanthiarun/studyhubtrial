@@ -1,7 +1,10 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Outlet, Link } from "react-router-dom";
 import { Fragment } from "react/jsx-runtime";
+import { useContext } from "react";
+import { UserContext } from "../../context/user.context";
 const Header = () => {
+  const {currentUser, doLogout} = useContext(UserContext);
   return (
    <Fragment>
     <Navbar expand="lg" bg="light" className="border-bottom shadow-sm">
@@ -23,8 +26,18 @@ const Header = () => {
 
           {/* Right side login/register */}
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/login">Login</Nav.Link>
-            <Nav.Link as={Link} to="/register">Register</Nav.Link>
+            {currentUser  ? 
+            
+            (<div className="d-flex align-items-center gap-3">
+              <span className="me-3">Hello, {currentUser.username}</span>
+              <button onClick={doLogout} > Logout </button>
+            </div> ) :
+            (
+              <>
+              <Nav.Link as={Link} to="/login">Login</Nav.Link>
+              <Nav.Link as={Link} to="/register">Register</Nav.Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
