@@ -5,6 +5,7 @@ import Header from './components/header/header.component.jsx';
 import RegisterForm from './components/auth/register.component.jsx';
 import LoginForm from './components/auth/login.component.jsx';
 import Dashboard from "./pages/admin/Dashboard";
+import AdminUserList from "./pages/admin/users/AdminListUser.jsx";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminRoute from './routes/AdminRoute'; // Adjust the path as needed
 
@@ -25,7 +26,8 @@ const App = () => {
       </Route> 
 	  <Route path="/admin" element={<AdminRoute>  <AdminLayout /> </AdminRoute>}>
 		 <Route index element={<Dashboard />} />
-		<Route path="dashboard" element={<Dashboard />} />
+		  <Route path="dashboard" element={<Dashboard />} />
+		  <Route path="user/list" element={<AdminUserList />} />
       </Route>
      </Routes>
    );

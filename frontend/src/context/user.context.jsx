@@ -12,11 +12,15 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null); 
 
    // check login on page load
+  const [loading, setLoading] = useState(true); // <-- loading state
+
   useEffect(() => {
     axios.get("http://localhost:5000/auth/getLoggedUser")
-      .then(res => setCurrentUser(res.data))
-      .catch(() => setCurrentUser(null));
+      .then(res => setCurrentUser(res.data.user))
+      .catch(() => setCurrentUser(null))
+      .finally(() => setLoading(false));  // <-- done loading
   }, []);
+
 
   const doLogin = async (formData) => {    
     try {
@@ -24,7 +28,7 @@ export const UserProvider = ({ children }) => {
       console.log('doLogin called');
       let response = await axios.post("http://localhost:5000/user/login", { email, password });
       console.log(response);
-      if(response.status == 200){
+      if(response.status === 200){
         console.log('doLogin called and res ok');
         const res = await axios.get("http://localhost:5000/auth/getLoggedUser");
         console.log('getLoggedUser called ');
@@ -46,6 +50,6 @@ export const UserProvider = ({ children }) => {
     setCurrentUser(null);
   }; 
 
-   const value = { currentUser, setCurrentUser, doLogin, doLogout };
+   const value = { currentUser, setCurrentUser, doLogin, doLogout,loading, setLoading };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

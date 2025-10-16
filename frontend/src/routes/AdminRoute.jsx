@@ -3,10 +3,17 @@ import { Navigate } from 'react-router-dom';
 import {UserContext} from "../context/user.context.jsx";
 
 const AdminRoute = ({ children }) => {
-  const {currentUser} = useContext(UserContext);
+  const { currentUser, loading } = useContext(UserContext);
+
+  if (loading) {
+    // You can return a loader/spinner or null while checking auth
+    return <div>Loading...</div>;
+  }
+
 
   if (!currentUser) {
     // Not logged in
+    console.log('redirecting');
     return <Navigate to="/login" replace />;
   }
 
