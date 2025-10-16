@@ -30,6 +30,9 @@ const Header = () => {
             
             (<div className="d-flex align-items-center gap-3">
               <span className="me-3">Hello, {currentUser.username}</span>
+	      {currentUser.roles === 'admin' && (
+	       <Nav.Link as={Link} to="/admin">Admin</Nav.Link>
+	       )}
               <button onClick={doLogout} > Logout </button>
             </div> ) :
             (
