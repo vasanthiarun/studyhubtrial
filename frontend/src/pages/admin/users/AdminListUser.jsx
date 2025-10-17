@@ -29,16 +29,20 @@ const AdminUserList = () => {
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>email</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
           </tr>
         </thead> 
         <tbody>
          {users.length > 0 ? (
             users.map((user) => (
-              <tr key={user.id}>
+              <tr key={user._id}>
                 <td>{user.roll_no}</td>
                 <td>{user.display_name}</td>
                 <td>{user.email}</td>
+                <td>{user.user_access}</td>
+                <td> <Link as={NavLink} to={`/admin/user/edit/${user._id}`}>Edit</Link></td>
               </tr>
             ))
           ) : (

@@ -7,6 +7,7 @@ import LoginForm from './components/auth/login.component.jsx';
 import Dashboard from "./pages/admin/Dashboard";
 import AdminUserList from "./pages/admin/users/AdminListUser.jsx";
 import AdminAddUser from "./pages/admin/users/AdminAddUser.jsx";
+import AdminEditUser from "./pages/admin/users/AdminEditUser.jsx";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminRoute from './routes/AdminRoute'; // Adjust the path as needed
 import { ToastContainer } from 'react-toastify';
@@ -33,6 +34,7 @@ const App = () => {
 		  <Route path="dashboard" element={<Dashboard />} />
 		  <Route path="user/list" element={<AdminUserList />} />
 		  <Route path="user/add" element={<AdminAddUser />} />
+		  <Route path="user/edit/:id" element={<AdminEditUser />} />
       </Route>
      </Routes>
       <ToastContainer />
