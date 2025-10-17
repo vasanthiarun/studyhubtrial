@@ -16,8 +16,8 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     axios.get("http://localhost:5000/auth/getLoggedUser")
-      .then(res => setCurrentUser(res.data.user))
-      .catch(() => setCurrentUser(null))
+      .then(res => setCurrentUser(res.data))
+      .catch(() =>{ console.log('resetting');setCurrentUser(null) })
       .finally(() => setLoading(false));  // <-- done loading
   }, []);
 

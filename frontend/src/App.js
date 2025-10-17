@@ -6,8 +6,11 @@ import RegisterForm from './components/auth/register.component.jsx';
 import LoginForm from './components/auth/login.component.jsx';
 import Dashboard from "./pages/admin/Dashboard";
 import AdminUserList from "./pages/admin/users/AdminListUser.jsx";
+import AdminAddUser from "./pages/admin/users/AdminAddUser.jsx";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminRoute from './routes/AdminRoute'; // Adjust the path as needed
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
 	return (
@@ -18,6 +21,7 @@ const Home = () => {
 
 const App = () => {
    return (
+    <>
     <Routes>
       <Route path="/" element = {<Header />}>
           <Route index element = {<Home />} />
@@ -28,8 +32,11 @@ const App = () => {
 		 <Route index element={<Dashboard />} />
 		  <Route path="dashboard" element={<Dashboard />} />
 		  <Route path="user/list" element={<AdminUserList />} />
+		  <Route path="user/add" element={<AdminAddUser />} />
       </Route>
      </Routes>
+      <ToastContainer />
+     </>
    );
 };
 

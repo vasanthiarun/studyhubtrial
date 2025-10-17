@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from "axios";
 
 axios.defaults.withCredentials = true; //for cookies
@@ -21,7 +22,7 @@ const AdminUserList = () => {
       <div className='col'>
       <h2>Users</h2>
       </div>
-      <span className='col float-right'><Link to='/add' >Add User</Link></span>
+      <span className='col float-right'><Link as={NavLink} to="/admin/user/add">Add User</Link></span>
       </div>
       <table className="table table-bordered">
         <thead>
