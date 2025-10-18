@@ -53,6 +53,17 @@ const AdminUserList = () => {
     setCurrentPage(1); // Reset to first page when filters change
   };
 
+  const resetFilters = () => {
+  setFilters({
+    name: '',
+    email: '',
+    roll_no: '',
+    status: 'all',
+    role: ''
+  });
+  setCurrentPage(1);
+};
+
   const toggleSearch = () => {
     setShowSearch(!showSearch);
   };
@@ -124,6 +135,9 @@ const AdminUserList = () => {
                 <option value="moderator">Moderator</option>
                 <option value="admin">Admin</option>
               </select>
+            </div>
+            <div className='col-md-2 d-flex align-items-center'>
+              <button className="btn btn-outline-secondary w-100" onClick={() => resetFilters()}>Reset</button>
             </div>
           </div>
         </div>

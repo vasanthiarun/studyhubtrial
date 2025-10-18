@@ -27,6 +27,9 @@ const AdminAddUser = () => {
     );   
   } ; 
 
+  const handleReset = (e) => {
+      navigate('/admin/user/list');
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('submitted');
@@ -48,7 +51,7 @@ const AdminAddUser = () => {
   return (
      <div className="container mt-5">
       <h2>Add User</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="row">
           <div className='mt-3 col-md-4'>
              <label htmlFor="roll_no" className="form-label">Roll No</label>
@@ -78,10 +81,37 @@ const AdminAddUser = () => {
              <label htmlFor="password" className="form-label">Password</label>
           </div>
           <div className='mt-3 col-md-4'>
-             <input type='text' name='password' id='email' className="form-control" value={formData.password}  onChange={handleChange} />
+             <input type='text' name='password' id='password' className="form-control" value={formData.password}  onChange={handleChange} />
           </div>
         </div>   
-        <button type="submit" onClick={handleSubmit} className="btn btn-primary">Add User</button>     
+        <div className="row">
+          <div className='mt-3 col-md-4'>
+             <label htmlFor="user_access" className="form-label">Role</label>
+          </div>
+          <div className='mt-3 col-md-4'>
+              <select name="user_access" id="user_access" value={formData.user_access} onChange={handleChange} className="form-select">
+                <option value="member">Member</option>
+                <option value="moderator">Moderator</option>
+                <option value="admin">Admin</option>
+              </select>
+          </div>
+        </div>   
+        <div className="row">
+          <div className='mt-3 col-md-4'>
+             <label htmlFor="status" className="form-label">Status</label>
+          </div>
+          <div className='mt-3 col-md-4'>
+              <select name="status" id="status" value={formData.status} onChange={handleChange} className="form-select">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+          </div>
+        </div>   
+       
+        <div class="mt-5 col-md-5 d-flex align-items-center justify-content-center gap-2">
+  <button type="submit" class="btn btn-primary">Add User</button>
+  <button type="button" class="btn btn-outline-secondary" onClick={handleReset}>Cancel</button>
+</div>
       </form>
 
      </div> 
